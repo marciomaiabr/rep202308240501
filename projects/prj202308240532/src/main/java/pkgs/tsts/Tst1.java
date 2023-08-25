@@ -1,16 +1,5 @@
 package pkgs.tsts;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import pkgs.models.ObjetoX;
 import pkgs.util.Util;
 
 public class Tst1 {
