@@ -51,25 +51,37 @@ public class PessoaMB {
 		String cmdBtnSalvar = Util.buscaRequestParameterFormPrincipal("cmdBtnSalvar");
 
 		if (cmdBtnSalvar != null) {
-			this.pessoa = new Pessoa();
-			this.pessoa.setEndereco(new Endereco());
-			this.pessoa.getEndereco().setPessoa(this.pessoa);
+			String idPrincipal = Util.buscaRequestParameterFormPrincipal("idPrincipal");
+			if(idPrincipal != null) {
+				this.pessoa = new PessoaDAO().buscaPorId(Integer.parseInt(idPrincipal));
+			}else {
+				this.pessoa = new Pessoa();
+				this.pessoa.setEndereco(new Endereco());
+				this.pessoa.getEndereco().setPessoa(this.pessoa);				
+			}
 		}
 	}
 
-	public void salvar() {
+	public String salvar() {
 		System.out.println("PessoaMB.salvar()");
-		System.out.println("[this.pessoa=" + this.pessoa + "]");
+		System.out.println("[this.pessoa=" + this.pessoa + "][this.pessoa.getEndereco()=" + this.pessoa.getEndereco() + "]");
 		new PessoaDAO().salvar(pessoa);
+		return "listar";
 	}
 
 	public void pesquisar() {
 		pessoas = new PessoaDAO().listar();
 	}
 
-	public List<Pessoa> listar(){
+	public List<Pessoa> listar() {
 		System.out.println("PessoaMB.listar()");
 		return pessoas;
+	}
+
+	public void busca(Integer id) {
+		System.out.println("PessoaMB.busca()");
+		System.out.println("[id=" + id + "]");
+		this.pessoa = new PessoaDAO().buscaPorId(id);
 	}
 
 }

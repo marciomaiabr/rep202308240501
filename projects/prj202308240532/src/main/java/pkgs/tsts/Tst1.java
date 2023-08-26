@@ -8,7 +8,7 @@ import pkgs.util.Util;
 public class Tst1 {
 
 	public static void main(String[] args) {
-		m4();
+		m3();
 	}
 
 	private static void m1() {

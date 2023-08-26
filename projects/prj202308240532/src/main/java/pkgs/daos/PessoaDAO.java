@@ -80,4 +80,33 @@ public class PessoaDAO {
 		return pessoas;
 	}
 
+	public Pessoa buscaPorId(Integer id) {
+		System.out.println("PessoaDAO.buscaPorId()");
+
+		Pessoa pessoa = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			emf = Persistence.createEntityManagerFactory("myPUNoCreate");
+			em = emf.createEntityManager();
+
+			pessoa = em.find(Pessoa.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return pessoa;
+	}
+
 }
