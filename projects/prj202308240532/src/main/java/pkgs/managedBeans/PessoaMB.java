@@ -1,6 +1,7 @@
 package pkgs.managedBeans;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +33,16 @@ public class PessoaMB {
 		this.pessoa = pessoa;
 	}
 
+	private List<Pessoa> pessoas;
+
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
+	}
+
 	@PostConstruct
 	public void init() {
 		System.out.println("PessoaMB.init()");
@@ -50,6 +61,15 @@ public class PessoaMB {
 		System.out.println("PessoaMB.salvar()");
 		System.out.println("[this.pessoa=" + this.pessoa + "]");
 		new PessoaDAO().salvar(pessoa);
+	}
+
+	public void pesquisar() {
+		pessoas = new PessoaDAO().listar();
+	}
+
+	public List<Pessoa> listar(){
+		System.out.println("PessoaMB.listar()");
+		return pessoas;
 	}
 
 }

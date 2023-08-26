@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Gerênciar Pessoas</title>
+</h:head>
+<f:metadata>
+	<f:viewAction action="#{pessoaMB.pesquisar()}"></f:viewAction>
+</f:metadata>
+<h:body>
+	<h1>Listar...</h1>
+	<h:dataTable value="#{pessoaMB.pessoas}" var="p">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{p.id}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+			<h:outputText value="#{p.nome}" />
+		</h:column>
+	</h:dataTable>
+</h:body>
+</html>
