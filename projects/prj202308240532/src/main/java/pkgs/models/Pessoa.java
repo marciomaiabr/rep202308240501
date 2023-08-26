@@ -1,9 +1,11 @@
 package pkgs.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pessoa {
@@ -13,6 +15,8 @@ public class Pessoa {
 	private Integer id;
 	private String nome;
 	private String sobreNome;
+	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+	private Endereco endereco;
 
 	public Integer getId() {
 		return id;
@@ -38,9 +42,22 @@ public class Pessoa {
 		this.sobreNome = sobreNome;
 	}
 
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	@Override
 	public String toString() {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", sobreNome=" + sobreNome + "]";
+	}
+
+	public Pessoa() {
+		super();
+		System.out.println("Pessoa.Pessoa()");
 	}
 
 }
