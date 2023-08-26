@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Gerênciar Pessoas</title>
+</h:head>
+<f:metadata>
+	<f:viewAction action="#{pessoaMB.busca(param['idPrincipal'])}" />
+</f:metadata>
+<h:body>
+	<h1>Editar...</h1>
+	<h:form id="formPrincipal">
+		<h:panelGrid>
+			<h:outputLabel value="Id:">
+				<h:inputText id="idPrincipal" value="#{pessoaMB.pessoa.id}" readonly="true" />
+			</h:outputLabel>
+			<h:outputLabel value="Nome:">
+				<h:inputText value="#{pessoaMB.pessoa.nome}" />
+			</h:outputLabel>
+			<h:outputLabel value="Sobrenome:">
+				<h:inputText value="#{pessoaMB.pessoa.sobreNome}" />
+			</h:outputLabel>
+		</h:panelGrid>
+		<p>
+			<h:commandButton id="cmdBtnSalvar" value="Salvar..." action="#{pessoaMB.salvar()}" />
+		</p>
+	</h:form>
+</h:body>
+</html>
