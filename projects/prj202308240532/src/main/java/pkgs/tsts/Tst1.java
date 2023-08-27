@@ -65,10 +65,7 @@ public class Tst1 {
 		pessoa.setEndereco(endereco);
 		endereco.setPessoa(pessoa);
 
-		if (!new PessoaDAO().salvar(pessoa)) {
-			Util.testaJPA();
-			new PessoaDAO().salvar(pessoa);
-		}
+		new PessoaDAO().salvar(pessoa);
 	}
 
 }
