@@ -1,16 +1,13 @@
 package pkgs.managedBeans;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
-import pkgs.repositorys.PessoaRepository;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
+import pkgs.repositorys.PessoaRepository;
 import pkgs.util.Util;
 
 @ManagedBean
