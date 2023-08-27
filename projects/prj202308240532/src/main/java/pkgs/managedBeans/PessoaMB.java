@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import pkgs.daos.PessoaDAO;
+import pkgs.repositorys.PessoaRepository;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
 import pkgs.util.Util;
@@ -53,7 +53,7 @@ public class PessoaMB {
 		if (cmdBtnSalvar != null) {
 			String idPrincipal = Util.buscaRequestParameterFormPrincipal("idPrincipal");
 			if(idPrincipal != null) {
-				this.pessoa = new PessoaDAO().buscaPorId(Integer.parseInt(idPrincipal));
+				this.pessoa = new PessoaRepository().buscaPorId(Integer.parseInt(idPrincipal));
 			}else {
 				this.pessoa = new Pessoa();
 				this.pessoa.setEndereco(new Endereco());
@@ -65,12 +65,12 @@ public class PessoaMB {
 	public String salvar() {
 		System.out.println("PessoaMB.salvar()");
 		System.out.println("[this.pessoa=" + this.pessoa + "][this.pessoa.getEndereco()=" + this.pessoa.getEndereco() + "]");
-		new PessoaDAO().salvar(pessoa);
+		new PessoaRepository().salvar(pessoa);
 		return "listar";
 	}
 
 	public void pesquisar() {
-		pessoas = new PessoaDAO().listar();
+		pessoas = new PessoaRepository().listar();
 	}
 
 	public List<Pessoa> listar() {
@@ -81,7 +81,7 @@ public class PessoaMB {
 	public void busca(Integer id) {
 		System.out.println("PessoaMB.busca()");
 		System.out.println("[id=" + id + "]");
-		this.pessoa = new PessoaDAO().buscaPorId(id);
+		this.pessoa = new PessoaRepository().buscaPorId(id);
 	}
 
 }

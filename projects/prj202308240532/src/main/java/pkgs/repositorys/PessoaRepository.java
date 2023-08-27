@@ -1,4 +1,4 @@
-package pkgs.daos;
+package pkgs.repositorys;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import javax.persistence.Persistence;
 
 import pkgs.models.Pessoa;
 
-public class PessoaDAO {
+public class PessoaRepository {
 
 	public boolean salvar(Pessoa pessoa) {
-		System.out.println("PessoaDAO.salvar()");
+		System.out.println("PessoaRepository.salvar()");
 
 		boolean r = false;
 
@@ -52,7 +52,7 @@ public class PessoaDAO {
 	}
 
 	public List<Pessoa> listar() {
-		System.out.println("PessoaDAO.listar()");
+		System.out.println("PessoaRepository.listar()");
 
 		List<Pessoa> pessoas = null;
 
@@ -81,7 +81,7 @@ public class PessoaDAO {
 	}
 
 	public Pessoa buscaPorId(Integer id) {
-		System.out.println("PessoaDAO.buscaPorId()");
+		System.out.println("PessoaRepository.buscaPorId()");
 
 		Pessoa pessoa = null;
 
