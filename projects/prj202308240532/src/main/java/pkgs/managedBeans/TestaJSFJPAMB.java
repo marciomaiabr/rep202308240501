@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 import pkgs.util.Util;
 
 @ManagedBean
-public class TestaJSFJPA {
+public class TestaJSFJPAMB {
 
 	public void testaJPA() {
 		Util.testaJPA();
