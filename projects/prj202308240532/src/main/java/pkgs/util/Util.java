@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.servlet.ServletRequest;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -122,6 +123,12 @@ public class Util {
 	public static String buscaRequestParameter(String parameterName) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		return context.getExternalContext().getRequestParameterMap().get(parameterName);
+	}
+
+	public static Object buscaRequestAttribute(String attributeName) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ServletRequest request = (ServletRequest) context.getExternalContext().getRequest();
+		return request.getAttribute(attributeName);
 	}
 
 }
