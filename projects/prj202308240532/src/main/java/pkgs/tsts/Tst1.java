@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 
 import pkgs.repositorys.PessoaRepository;
+import pkgs.repositorys.PessoaRepositoryJPA;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
 import pkgs.util.Util;
@@ -65,7 +66,7 @@ public class Tst1 {
 		pessoa.setEndereco(endereco);
 		endereco.setPessoa(pessoa);
 
-		new PessoaRepository().salvar(pessoa);
+		new PessoaRepositoryJPA().salvar(pessoa);
 	}
 
 }
