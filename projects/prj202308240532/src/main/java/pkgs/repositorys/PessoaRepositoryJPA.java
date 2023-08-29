@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 
 import pkgs.models.Pessoa;
-import pkgs.util.Util;
+import pkgs.util.JSFUtil;
 
 @ManagedBean
 public class PessoaRepositoryJPA implements PessoaRepository {
@@ -15,7 +15,7 @@ public class PessoaRepositoryJPA implements PessoaRepository {
 
 	public PessoaRepositoryJPA() {
 		System.out.println("PessoaRepositoryJPA.PessoaRepositoryJPA()");
-		entityManager = (EntityManager) Util.buscaRequestAttribute("entityManager");
+		entityManager = (EntityManager) JSFUtil.buscaRequestAttribute("entityManager");
 	}
 
 	public boolean salvar(Pessoa pessoa) {

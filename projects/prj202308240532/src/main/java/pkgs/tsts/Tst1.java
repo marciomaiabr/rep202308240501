@@ -1,14 +1,12 @@
 package pkgs.tsts;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 
-import pkgs.repositorys.PessoaRepository;
-import pkgs.repositorys.PessoaRepositoryJPA;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
-import pkgs.util.Util;
+import pkgs.repositorys.PessoaRepositoryJPA;
+import pkgs.util.HibernateUtil;
+import pkgs.util.JPAUtil;
 
 public class Tst1 {
 
@@ -17,21 +15,22 @@ public class Tst1 {
 			// System.out.println("Digite o Id do método que deseja executar:");
 			// BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			// String valorDigitado = reader.readLine();
-			String valorDigitado = javax.swing.JOptionPane.showInputDialog("Digite o Id do método que deseja executar:");
-			System.out.println("[valorDigitado="+valorDigitado+"]");
-			if(valorDigitado==null) {
+			String valorDigitado = javax.swing.JOptionPane
+					.showInputDialog("Digite o Id do método que deseja executar:");
+			System.out.println("[valorDigitado=" + valorDigitado + "]");
+			if (valorDigitado == null) {
 				System.out.println("Operação cancelada...");
-			}else {
+			} else {
 				Method[] methods = Tst1.class.getMethods();
 				Method method = null;
-				for(Method m : methods) {
-					if(m.getName().equals("m".concat(valorDigitado)))
+				for (Method m : methods) {
+					if (m.getName().equals("m".concat(valorDigitado)))
 						method = m;
 				}
-				if(method==null) {
+				if (method == null) {
 					System.out.println("Método não encontrado...");
-				}else {
-					System.out.println("[method="+method+"]");
+				} else {
+					System.out.println("[method=" + method + "]");
 					method.invoke(null);
 				}
 			}
@@ -46,12 +45,12 @@ public class Tst1 {
 
 	public static void m2() {
 		System.out.println("Tst1.m2()");
-		Util.testaHibernate();
+		HibernateUtil.testaHibernate();
 	}
 
 	public static void m3() {
 		System.out.println("Tst1.m3()");
-		Util.testaJPA();
+		JPAUtil.testaJPA();
 	}
 
 	public static void m4() {

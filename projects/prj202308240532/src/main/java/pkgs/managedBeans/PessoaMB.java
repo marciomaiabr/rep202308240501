@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
 import pkgs.services.PessoaService;
-import pkgs.util.Util;
+import pkgs.util.JSFUtil;
 
 @ManagedBean
 public class PessoaMB {
@@ -62,10 +62,10 @@ public class PessoaMB {
 		System.out.println("[this.pessoa=" + this.pessoa + "]");
 		System.out.println("[this.pessoaService=" + this.pessoaService + "]");
 
-		String cmdBtnSalvar = Util.buscaRequestParameterFormPrincipal("cmdBtnSalvar");
+		String cmdBtnSalvar = JSFUtil.buscaRequestParameterFormPrincipal("cmdBtnSalvar");
 
 		if (cmdBtnSalvar != null) {
-			String idPrincipal = Util.buscaRequestParameterFormPrincipal("idPrincipal");
+			String idPrincipal = JSFUtil.buscaRequestParameterFormPrincipal("idPrincipal");
 			if (idPrincipal != null) {
 				this.pessoa = pessoaService.buscaPorId(Integer.parseInt(idPrincipal));
 			} else {

@@ -2,13 +2,13 @@ package pkgs.managedBeans;
 
 import javax.faces.bean.ManagedBean;
 
-import pkgs.util.Util;
+import pkgs.util.JPAUtil;
 
 @ManagedBean
 public class TestaJSFJPAMB {
 
 	public void testaJPA() {
-		Util.testaJPA();
+		JPAUtil.testaJPA();
 	}
-	
+
 }
