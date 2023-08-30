@@ -18,6 +18,11 @@ public class PessoaRepositoryJPA implements PessoaRepository {
 		entityManager = (EntityManager) JSFUtil.buscaRequestAttribute("entityManager");
 	}
 
+	public PessoaRepositoryJPA(EntityManager entityManager) {
+		System.out.println("PessoaRepositoryJPA.PessoaRepositoryJPA(EntityManager entityManager)");
+		this.entityManager = entityManager;
+	}
+
 	public boolean salvar(Pessoa pessoa) {
 		System.out.println("PessoaRepositoryJPA.salvar()");
 
