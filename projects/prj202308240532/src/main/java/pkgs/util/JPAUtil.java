@@ -66,4 +66,38 @@ public class JPAUtil {
 		}
 	}
 
+	public static void execute(Consumer<EntityManager> consumer) {
+		System.out.println("JPAUtil.execute()");
+		EntityManagerFactory entityManagerFactory = null;
+		EntityManager entityManager = null;
+		EntityTransaction entityTransaction = null;
+		try {
+			entityManagerFactory = Persistence.createEntityManagerFactory("myPUNoCreate");
+			entityManager = entityManagerFactory.createEntityManager();
+
+			entityTransaction = entityManager.getTransaction();
+
+			entityTransaction.begin();
+
+			consumer.accept(entityManager);
+
+			entityTransaction.commit();
+		} catch (Exception e) {
+			try {
+				entityTransaction.rollback();
+			} catch (Exception e2) {
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				entityManager.close();
+			} catch (Exception e) {
+			}
+			try {
+				entityManagerFactory.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+
 }
