@@ -59,10 +59,17 @@ public class JPAUtil {
 		try {
 			emf = Persistence.createEntityManagerFactory("myPUCreate");
 			em = emf.createEntityManager();
-			em.close();
-			emf.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
 		}
 	}
 
