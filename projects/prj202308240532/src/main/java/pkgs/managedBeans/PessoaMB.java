@@ -110,10 +110,10 @@ public class PessoaMB {
 		return pessoas;
 	}
 
-	public void busca(Integer id) {
+	public void busca() {
 		System.out.println("PessoaMB.busca()");
-		System.out.println("[id=" + id + "]");
-		this.pessoa = pessoaService.buscaPorId(id);
+		System.out.println("[this.idPrincipal=" + this.idPrincipal + "]");
+		this.pessoa = pessoaService.buscaPorId(this.idPrincipal);
 	}
 
 }
