@@ -1,5 +1,7 @@
 package pkgs.util;
 
+import java.util.function.Consumer;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -46,6 +48,19 @@ public class JPAUtil {
 			emf.close();
 
 			System.out.println("testes com o JPA executados com sucesso...");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void createDatabase() {
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		try {
+			emf = Persistence.createEntityManagerFactory("myPUCreate");
+			em = emf.createEntityManager();
+			em.close();
+			emf.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
