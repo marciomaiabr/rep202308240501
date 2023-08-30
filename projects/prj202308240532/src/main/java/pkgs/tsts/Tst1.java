@@ -53,4 +53,33 @@ public class Tst1 {
 		JPAUtil.testaJPA();
 	}
 
+	public static void m5() {
+		System.out.println("Tst1.m5()");
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome("lkj");
+		pessoa.setSobreNome("kjh");
+
+		Endereco endereco = new Endereco();
+		endereco.setDescEndereco("jhg");
+
+		pessoa.setEndereco(endereco);
+		endereco.setPessoa(pessoa);
+
+		JPAUtil.execute(entityManager -> {
+			System.out.println("Tst1.m5()... JPAUtil.execute()... 1...");
+			Pessoa p = entityManager.merge(pessoa);
+			pessoa.setId(p.getId());
+			pessoa.getEndereco().setId(p.getEndereco().getId());
+		});
+
+		JPAUtil.execute(entityManager -> {
+			System.out.println("Tst1.m5()... JPAUtil.execute()... 2...");
+			Pessoa p = entityManager.find(Pessoa.class, pessoa.getId());
+			System.out.println("[p=" + p + "]");
+			Endereco e = entityManager.find(Endereco.class, pessoa.getEndereco().getId());
+			System.out.println("[e=" + e + "]");
+		});
+
+	}
+
 }
