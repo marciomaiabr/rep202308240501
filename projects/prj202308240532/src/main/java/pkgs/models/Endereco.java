@@ -1,5 +1,6 @@
 package pkgs.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ public class Endereco {
 	private Integer id;
 	@OneToOne
 	private Pessoa pessoa;
+	@Column(length = 75)
 	private String descEndereco;
 
 	public Integer getId() {

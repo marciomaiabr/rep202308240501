@@ -1,6 +1,7 @@
 package pkgs.models;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,9 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(length = 100)
 	private String nome;
+	@Column(length = 50)
 	private String sobreNome;
 	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
 	private Endereco endereco;
