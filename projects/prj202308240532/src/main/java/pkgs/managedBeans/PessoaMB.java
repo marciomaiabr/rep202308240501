@@ -18,6 +18,20 @@ public class PessoaMB {
 		System.out.println("PessoaMB.PessoaMB()");
 	}
 
+	@ManagedProperty("#{param['idPrincipal']}")
+	private Integer idPrincipal;
+
+	public Integer getIdPrincipal() {
+		return idPrincipal;
+	}
+
+	public void setIdPrincipal(Integer idPrincipal) {
+		System.out.println("PessoaMB.setIdPrincipal()");
+		System.out.println("[this.idPrincipal=" + this.idPrincipal + "]");
+		System.out.println("[idPrincipal=" + idPrincipal + "]");
+		this.idPrincipal = idPrincipal;
+	}
+
 	@ManagedProperty("#{pessoaService}")
 	private PessoaService pessoaService;
 
@@ -61,14 +75,14 @@ public class PessoaMB {
 		System.out.println("PessoaMB.init()");
 		System.out.println("[this.pessoa=" + this.pessoa + "]");
 		System.out.println("[this.pessoaService=" + this.pessoaService + "]");
+		System.out.println("[this.idPrincipal=" + this.idPrincipal + "]");
 
 		String cmdBtnSalvar = JSFUtil.buscaRequestParameterFormPrincipal("cmdBtnSalvar");
 
-		if (cmdBtnSalvar != null) {
-			String idPrincipal = JSFUtil.buscaRequestParameterFormPrincipal("idPrincipal");
-			if (idPrincipal != null) {
-				this.pessoa = pessoaService.buscaPorId(Integer.parseInt(idPrincipal));
-			} else {
+		if (this.idPrincipal != null) {
+			this.pessoa = pessoaService.buscaPorId(idPrincipal);
+		} else {
+			if (cmdBtnSalvar != null) {
 				this.pessoa = new Pessoa();
 				this.pessoa.setEndereco(new Endereco());
 				this.pessoa.getEndereco().setPessoa(this.pessoa);
@@ -78,9 +92,11 @@ public class PessoaMB {
 
 	public String salvar() {
 		System.out.println("PessoaMB.salvar()");
-		System.out
-				.println("[this.pessoa=" + this.pessoa + "][this.pessoa.getEndereco()=" + this.pessoa.getEndereco()
-						+ "][this.pessoaService=" + this.pessoaService + "]");
+		System.out.println("[this.pessoa=" + this.pessoa + "]");
+		System.out.println("[this.pessoa.getEndereco()=" + this.pessoa.getEndereco() + "]");
+		System.out.println("[this.pessoaService=" + this.pessoaService + "]");
+		System.out.println("[this.idPrincipal=" + this.idPrincipal + "]");
+
 		pessoaService.salvar(pessoa);
 		return "listar";
 	}

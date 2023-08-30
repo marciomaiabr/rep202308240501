@@ -12,7 +12,7 @@
 	<h:form id="formPrincipal">
 		<h:panelGrid>
 			<h:outputLabel value="Id:">
-				<h:inputText id="idPrincipal" value="#{pessoaMB.pessoa.id}" readonly="true" />
+				<h:outputText value="#{pessoaMB.pessoa.id}" />
 			</h:outputLabel>
 			<h:outputLabel value="Nome:">
 				<h:inputText value="#{pessoaMB.pessoa.nome}" />
@@ -22,7 +22,9 @@
 			</h:outputLabel>
 		</h:panelGrid>
 		<p>
-			<h:commandButton id="cmdBtnSalvar" value="Salvar..." action="#{pessoaMB.salvar()}" />
+			<h:commandButton id="cmdBtnSalvar" value="Salvar..." action="#{pessoaMB.salvar()}" >
+				<f:param name="idPrincipal" value="#{pessoaMB.pessoa.id}" />
+			</h:commandButton>
 		</p>
 	</h:form>
 </h:body>
