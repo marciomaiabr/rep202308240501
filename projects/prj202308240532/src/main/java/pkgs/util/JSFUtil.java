@@ -8,7 +8,7 @@ import javax.servlet.ServletRequest;
 
 public class JSFUtil {
 
-	public void listRequestParameters() {
+	public static void listRequestParameters() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
 		Iterator<String> iter = paramMap.keySet().iterator();
