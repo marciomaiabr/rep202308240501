@@ -53,19 +53,4 @@ public class Tst1 {
 		JPAUtil.testaJPA();
 	}
 
-	public static void m4() {
-		System.out.println("Tst1.m4()");
-		Pessoa pessoa = new Pessoa();
-		pessoa.setNome("lkj");
-		pessoa.setSobreNome("kjh");
-
-		Endereco endereco = new Endereco();
-		endereco.setDescEndereco("jhg");
-
-		pessoa.setEndereco(endereco);
-		endereco.setPessoa(pessoa);
-
-		new PessoaRepositoryJPA().salvar(pessoa);
-	}
-
 }
