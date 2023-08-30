@@ -1,9 +1,8 @@
 package pkgs.managedBeans;
 
 import javax.faces.bean.ManagedBean;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
+import pkgs.util.JPAUtil;
 
 @ManagedBean
 public class DatabaseMB {
@@ -14,16 +13,7 @@ public class DatabaseMB {
 
 	public void createDatabase() {
 		System.out.println("DatabaseMB.createDatabase()");
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-		try {
-			emf = Persistence.createEntityManagerFactory("myPUCreate");
-			em = emf.createEntityManager();
-			em.close();
-			emf.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		JPAUtil.createDatabase();
 	}
 
 }
