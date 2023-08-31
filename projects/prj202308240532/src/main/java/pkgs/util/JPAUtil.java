@@ -107,6 +107,21 @@ public class JPAUtil {
 			em.persist(new SubAreaAtuacao(areaAtuacao, "Contabilidade"));
 			em.persist(new SubAreaAtuacao(areaAtuacao, "Economia"));
 
+			// insert Cargo
+			subAreaAtuacao = em.find(SubAreaAtuacao.class, 2);
+			em.persist(new Cargo(subAreaAtuacao, "Psicologo"));
+
+			subAreaAtuacao = em.find(SubAreaAtuacao.class, 3);
+			em.persist(new Cargo(subAreaAtuacao, "CEO"));
+
+			subAreaAtuacao = em.find(SubAreaAtuacao.class, 4);
+			em.persist(new Cargo(subAreaAtuacao, "Programador"));
+			em.persist(new Cargo(subAreaAtuacao, "DBA"));
+
+			subAreaAtuacao = em.find(SubAreaAtuacao.class, 5);
+			em.persist(new Cargo(subAreaAtuacao, "Contador"));
+			em.persist(new Cargo(subAreaAtuacao, "Auditor"));
+
 			et.commit();
 
 			em.createQuery("from Cargo", Cargo.class).getResultStream().forEach(System.out::println);
