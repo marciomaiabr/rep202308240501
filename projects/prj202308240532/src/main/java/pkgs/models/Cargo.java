@@ -15,7 +15,7 @@ public class Cargo {
 	private Integer id;
 	@Column(length = 50)
 	private String descricao;
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private SubAreaAtuacao subAreaAtuacao;
 
 	public Integer getId() {
@@ -39,6 +39,16 @@ public class Cargo {
 	}
 
 	public void setSubAreaAtuacao(SubAreaAtuacao subAreaAtuacao) {
+		this.subAreaAtuacao = subAreaAtuacao;
+	}
+
+	public Cargo() {
+		super();
+	}
+
+	public Cargo(SubAreaAtuacao subAreaAtuacao, String descricao) {
+		super();
+		this.descricao = descricao;
 		this.subAreaAtuacao = subAreaAtuacao;
 	}
 
