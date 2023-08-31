@@ -7,7 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import pkgs.models.AreaAtuacao;
 import pkgs.models.ObjetoX;
+import pkgs.models.SubAreaAtuacao;
 
 public class JPAUtil {
 
@@ -60,6 +62,37 @@ public class JPAUtil {
 			emf = Persistence.createEntityManagerFactory("myPUCreate");
 			em = emf.createEntityManager();
 		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+
+	public static void initialInsert() {
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		EntityTransaction et = null;
+		try {
+			emf = Persistence.createEntityManagerFactory("myPUNoCreate");
+			em = emf.createEntityManager();
+			et = em.getTransaction();
+			et.begin();
+
+
+
+			et.commit();
+		} catch (Exception e) {
+			try {
+				et.rollback();
+			} catch (Exception e2) {
+			}
 			e.printStackTrace();
 		} finally {
 			try {
