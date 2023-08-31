@@ -56,6 +56,16 @@ public class SubAreaAtuacao {
 		this.cargos = cargos;
 	}
 
+	public SubAreaAtuacao() {
+		super();
+	}
+
+	public SubAreaAtuacao(AreaAtuacao areaAtuacao, String descricao) {
+		super();
+		this.areaAtuacao = areaAtuacao;
+		this.descricao = descricao;
+	}
+
 	@Override
 	public String toString() {
 		return "SubAreaAtuacao [id=" + id + ", descricao=" + descricao + ", areaAtuacao=" + areaAtuacao + "]";
