@@ -45,6 +45,15 @@ public class AreaAtuacao {
 		this.subAreaAtuacao = subAreaAtuacao;
 	}
 
+	public AreaAtuacao() {
+		super();
+	}
+
+	public AreaAtuacao(String descricao) {
+		super();
+		this.descricao = descricao;
+	}
+
 	@Override
 	public String toString() {
 		return "AreaAtuacao [id=" + id + ", descricao=" + descricao + "]";
