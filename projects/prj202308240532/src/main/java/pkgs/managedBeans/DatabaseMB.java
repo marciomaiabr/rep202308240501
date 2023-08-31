@@ -14,6 +14,7 @@ public class DatabaseMB {
 	public void createDatabase() {
 		System.out.println("DatabaseMB.createDatabase()");
 		JPAUtil.createDatabase();
+		JPAUtil.initialInsert();
 	}
 
 }
