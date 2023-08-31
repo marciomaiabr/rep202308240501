@@ -1,11 +1,15 @@
 package pkgs.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class SubAreaAtuacao {
@@ -15,8 +19,10 @@ public class SubAreaAtuacao {
 	private Integer id;
 	@Column(length = 50)
 	private String descricao;
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private AreaAtuacao areaAtuacao;
+	@OneToMany(mappedBy = "subAreaAtuacao", cascade = CascadeType.ALL)
+	private List<Cargo> cargos;
 
 	public Integer getId() {
 		return id;
@@ -40,6 +46,14 @@ public class SubAreaAtuacao {
 
 	public void setAreaAtuacao(AreaAtuacao areaAtuacao) {
 		this.areaAtuacao = areaAtuacao;
+	}
+
+	public List<Cargo> getCargos() {
+		return cargos;
+	}
+
+	public void setCargos(List<Cargo> cargos) {
+		this.cargos = cargos;
 	}
 
 	@Override
