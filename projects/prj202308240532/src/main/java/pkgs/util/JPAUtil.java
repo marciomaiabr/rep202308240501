@@ -1,5 +1,6 @@
 package pkgs.util;
 
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import pkgs.models.AreaAtuacao;
+import pkgs.models.Cargo;
 import pkgs.models.ObjetoX;
 import pkgs.models.SubAreaAtuacao;
 
@@ -85,9 +87,17 @@ public class JPAUtil {
 			et = em.getTransaction();
 			et.begin();
 
+			AreaAtuacao areaAtuacao = null;
+			SubAreaAtuacao subAreaAtuacao = null;
 
+			// insert AreaAtuacao
+			em.persist(new AreaAtuacao("Humanas"));
+			em.persist(new AreaAtuacao("Exatas"));
 
 			et.commit();
+
+			em.createQuery("from Cargo", Cargo.class).getResultStream().forEach(System.out::println);
+
 		} catch (Exception e) {
 			try {
 				et.rollback();
