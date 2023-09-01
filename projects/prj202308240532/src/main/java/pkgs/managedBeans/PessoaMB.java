@@ -88,6 +88,8 @@ public class PessoaMB {
 				this.pessoa.getEndereco().setPessoa(this.pessoa);
 			}
 		}
+
+		System.out.println("[this.pessoa=" + this.pessoa + "]");
 	}
 
 	public String salvar() {
@@ -108,12 +110,6 @@ public class PessoaMB {
 	public List<Pessoa> listar() {
 		System.out.println("PessoaMB.listar()");
 		return pessoas;
-	}
-
-	public void busca() {
-		System.out.println("PessoaMB.busca()");
-		System.out.println("[this.idPrincipal=" + this.idPrincipal + "]");
-		this.pessoa = pessoaService.buscaPorId(this.idPrincipal);
 	}
 
 }
