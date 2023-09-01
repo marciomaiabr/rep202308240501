@@ -79,10 +79,13 @@ public class PessoaMB {
 
 		String cmdBtnSalvar = JSFUtil.buscaRequestParameterFormPrincipal("cmdBtnSalvar");
 
-		if (this.idPrincipal != null) {
+		if ((this.idPrincipal != null) && (!this.idPrincipal.equals(0))) {
+			System.out.println("if 1...");
 			this.pessoa = pessoaService.buscaPorId(idPrincipal);
 		} else {
+			System.out.println("else 1...");
 			if (cmdBtnSalvar != null) {
+				System.out.println("if 1...");
 				this.pessoa = new Pessoa();
 				this.pessoa.setEndereco(new Endereco());
 				this.pessoa.getEndereco().setPessoa(this.pessoa);
