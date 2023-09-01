@@ -5,25 +5,29 @@
 	<title>Gerênciar Pessoas</title>
 </h:head>
 <h:body>
-	<h1>Novo...</h1>
-	<h3>20230831 0905</h3>
+	<h1>Detalhes...</h1>
+	<h1><h:outputText value="Novo..." rendered="#{pessoaMB.pessoa.id==null}" /></h1>
+	<h1><h:outputText value="Editar..." rendered="#{pessoaMB.pessoa.id!=null}" /></h1>
+	<h3>20230831 0911</h3>
 	<h:form id="formPrincipal">
 		<h:panelGrid>
-
+			<h:outputLabel value="Id:">
+				<h:outputText value="#{pessoaMB.pessoa.id}" />
+			</h:outputLabel>
 			<h:outputLabel value="Nome:">
 				<h:inputText value="#{pessoaMB.pessoa.nome}" />
 			</h:outputLabel>
 			<h:outputLabel value="Sobrenome:">
 				<h:inputText value="#{pessoaMB.pessoa.sobreNome}" />
 			</h:outputLabel>
-
-			<h:outputLabel value="Endereço:">
+			<h:outputLabel value="Endereço:" rendered="#{pessoaMB.pessoa.id==null}" >
 				<h:inputText value="#{pessoaMB.pessoa.endereco.descEndereco}" />
 			</h:outputLabel>
-
 		</h:panelGrid>
 		<p>
-			<h:commandButton id="cmdBtnSalvar" value="Salvar..." action="#{pessoaMB.salvar()}" />
+			<h:commandButton id="cmdBtnSalvar" value="Salvar..." action="#{pessoaMB.salvar()}" >
+				<f:param name="idPrincipal" value="#{pessoaMB.pessoa.id}" />
+			</h:commandButton>
 		</p>
 	</h:form>
 </h:body>
