@@ -14,7 +14,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter(servletNames={"Faces Servlet"})
+import pkgs.models.ObjetoX;
+import pkgs.util.JPAUtil;
+
+@WebFilter(servletNames = { "Faces Servlet" })
 public class ServletFilterJPA implements Filter {
 
 	public ServletFilterJPA() {
@@ -24,6 +27,52 @@ public class ServletFilterJPA implements Filter {
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 		System.out.println("ServletFilterJPA.init()");
+
+		boolean infraOK = false;
+
+		EntityManagerFactory entityManagerFactory = null;
+		EntityManager entityManager = null;
+		EntityTransaction entityTransaction = null;
+		try {
+			entityManagerFactory = Persistence.createEntityManagerFactory("myPUNoCreate");
+			entityManager = entityManagerFactory.createEntityManager();
+
+			entityTransaction = entityManager.getTransaction();
+
+			entityTransaction.begin();
+
+			ObjetoX objetoX = entityManager.find(ObjetoX.class, 1);
+			System.out.println("[objetoX="+objetoX+"]");
+
+			entityTransaction.commit();
+
+			System.out.println("Infra Ok...");
+
+			infraOK = true;
+		} catch (Exception e) {
+			try {
+				entityTransaction.rollback();
+			} catch (Exception e2) {
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				entityManager.close();
+			} catch (Exception e) {
+			}
+			try {
+				entityManagerFactory.close();
+			} catch (Exception e) {
+			}
+		}
+
+		if (!infraOK) {
+			System.out.println("Infra não Ok...");
+
+			JPAUtil.createDatabase();
+			JPAUtil.initialInsert();
+		}
+
 	}
 
 	@Override
