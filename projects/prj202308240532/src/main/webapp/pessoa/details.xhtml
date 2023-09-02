@@ -1,14 +1,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
 <h:head>
 	<title>Gerênciar Pessoas</title>
 </h:head>
 <h:body>
 	<h1>Detalhes...</h1>
-	<h1><h:outputText value="Novo..." rendered="#{pessoaMB.pessoa.id==null}" /></h1>
-	<h1><h:outputText value="Editar..." rendered="#{pessoaMB.pessoa.id!=null}" /></h1>
-	<h3>20230831 0911</h3>
+    <c:if test="#{pessoaMB.pessoa.id==null}">
+		<h1><h:outputText value="Novo..." /></h1>
+    </c:if>
+    <c:if test="#{pessoaMB.pessoa.id!=null}">
+		<h1><h:outputText value="Editar..." /></h1>
+    </c:if>
+	<h3>20230902 0631...</h3>
 	<h:form id="formPrincipal">
 		<h:panelGrid>
 			<h:outputLabel value="Id:">
