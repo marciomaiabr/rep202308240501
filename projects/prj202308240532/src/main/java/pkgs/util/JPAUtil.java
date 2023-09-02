@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 import pkgs.models.AreaAtuacao;
 import pkgs.models.Cargo;
+import pkgs.models.Empresa;
 import pkgs.models.ObjetoX;
 import pkgs.models.SubAreaAtuacao;
 
@@ -122,9 +123,14 @@ public class JPAUtil {
 			em.persist(new Cargo(subAreaAtuacao, "Contador"));
 			em.persist(new Cargo(subAreaAtuacao, "Auditor"));
 
+			// insert Empresa
+			em.persist(new Empresa("RZ Default", "NF Default"));
+
 			et.commit();
 
 			em.createQuery("from Cargo", Cargo.class).getResultStream().forEach(System.out::println);
+
+			em.createQuery("from Empresa", Empresa.class).getResultList().forEach(System.out::println);
 
 		} catch (Exception e) {
 			try {
