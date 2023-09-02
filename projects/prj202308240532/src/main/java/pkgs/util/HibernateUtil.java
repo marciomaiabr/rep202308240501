@@ -5,14 +5,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import pkgs.models.ObjetoX;
+import pkgs.models.Empresa;
 
 public class HibernateUtil {
 
 	public static void testaHibernate() {
 		System.out.println("testes com o hibernate...");
 
-		ObjetoX objetoX = null;
+		Empresa empresa = null;
 
 		Configuration config = null;
 		SessionFactory sessionFactory = null;
@@ -29,10 +29,10 @@ public class HibernateUtil {
 
 			t = session.beginTransaction();
 
-			objetoX = new ObjetoX();
-			objetoX.setDescricao("Teste com hibernate descrição...");
+			empresa = new Empresa();
+			empresa.setRazaoSocial("Teste com hibernate descrição...");
 
-			session.save(objetoX);
+			session.save(empresa);
 
 			t.commit();
 
@@ -40,9 +40,9 @@ public class HibernateUtil {
 
 			session = sessionFactory.openSession();
 
-			objetoX = session.find(ObjetoX.class, 1);
+			empresa = session.find(Empresa.class, 1);
 
-			System.out.println("[objetoX=" + objetoX + "]");
+			System.out.println("[empresa=" + empresa + "]");
 
 			session.close();
 			sessionFactory.close();

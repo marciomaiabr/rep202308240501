@@ -11,7 +11,6 @@ import javax.persistence.Persistence;
 import pkgs.models.AreaAtuacao;
 import pkgs.models.Cargo;
 import pkgs.models.Empresa;
-import pkgs.models.ObjetoX;
 import pkgs.models.SubAreaAtuacao;
 
 public class JPAUtil {
@@ -19,7 +18,7 @@ public class JPAUtil {
 	public static void testaJPA() {
 		System.out.println("testes com o JPA...");
 
-		ObjetoX objetoX = null;
+		Empresa empresa = null;
 
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
@@ -33,10 +32,10 @@ public class JPAUtil {
 
 			et.begin();
 
-			objetoX = new ObjetoX();
-			objetoX.setDescricao("Teste com JPA descrição...");
+			empresa = new Empresa();
+			empresa.setRazaoSocial("Teste com JPA descrição...");
 
-			em.merge(objetoX);
+			em.merge(empresa);
 
 			et.commit();
 			em.close();
@@ -45,9 +44,9 @@ public class JPAUtil {
 			emf = Persistence.createEntityManagerFactory("myPUNoCreate");
 			em = emf.createEntityManager();
 
-			objetoX = em.find(ObjetoX.class, 1);
+			empresa = em.find(Empresa.class, 1);
 
-			System.out.println("[objetoX=" + objetoX + "]");
+			System.out.println("[empresa=" + empresa + "]");
 
 			em.close();
 			emf.close();

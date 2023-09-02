@@ -14,7 +14,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import pkgs.models.ObjetoX;
+import pkgs.models.Empresa;
 import pkgs.util.JPAUtil;
 
 @WebFilter(servletNames = { "Faces Servlet" })
@@ -41,8 +41,8 @@ public class ServletFilterJPA implements Filter {
 
 			entityTransaction.begin();
 
-			ObjetoX objetoX = entityManager.find(ObjetoX.class, 1);
-			System.out.println("[objetoX="+objetoX+"]");
+			Empresa empresa = entityManager.find(Empresa.class, 1);
+			System.out.println("[empresa="+empresa+"]");
 
 			entityTransaction.commit();
 
