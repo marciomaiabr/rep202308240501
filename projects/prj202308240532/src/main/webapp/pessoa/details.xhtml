@@ -7,13 +7,8 @@
 </h:head>
 <h:body>
 	<h1>Detalhes...</h1>
-    <c:if test="#{pessoaMB.pessoa.id==null}">
-		<h1><h:outputText value="Novo..." /></h1>
-    </c:if>
-    <c:if test="#{pessoaMB.pessoa.id!=null}">
-		<h1><h:outputText value="Editar..." /></h1>
-    </c:if>
-	<h3>20230902 0631...</h3>
+	<h1><h:outputText value="#{pessoaMB.pessoa.id==null ? 'Novo...' : 'Editar...' }" /></h1>
+	<h3>20230902 0637...</h3>
 	<h:form id="formPrincipal">
 		<h:panelGrid>
 			<h:outputLabel value="Id:">
