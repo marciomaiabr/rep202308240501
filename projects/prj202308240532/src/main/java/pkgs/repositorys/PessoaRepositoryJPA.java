@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 
+import pkgs.models.AreaAtuacao;
 import pkgs.models.Pessoa;
 import pkgs.util.JSFUtil;
 
@@ -44,6 +45,11 @@ public class PessoaRepositoryJPA implements PessoaRepository {
 		System.out.println("PessoaRepositoryJPA.buscaPorId()");
 
 		return entityManager.find(Pessoa.class, id);
+	}
+
+	@Override
+	public List<AreaAtuacao> listarAreasAtuacao() {
+		return entityManager.createQuery(" from AreaAtuacao ", AreaAtuacao.class).getResultList();
 	}
 
 }

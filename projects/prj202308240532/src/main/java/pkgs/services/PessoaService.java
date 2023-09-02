@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
+import pkgs.models.AreaAtuacao;
 import pkgs.models.Pessoa;
 import pkgs.repositorys.PessoaRepository;
 import pkgs.repositorys.Repositorys;
@@ -28,4 +29,9 @@ public class PessoaService {
 	public Pessoa buscaPorId(Integer id) {
 		return this.pessoaRepository.buscaPorId(id);
 	}
+
+	public List<AreaAtuacao> listarAreasAtuacao() {
+		return this.pessoaRepository.listarAreasAtuacao();
+	}
+
 }

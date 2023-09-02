@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import pkgs.models.AreaAtuacao;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
 import pkgs.services.PessoaService;
@@ -113,6 +114,11 @@ public class PessoaMB {
 	public List<Pessoa> listar() {
 		System.out.println("PessoaMB.listar()");
 		return pessoas;
+	}
+
+	public List<AreaAtuacao> getAreasAtuacao() {
+		System.out.println("PessoaMB.getAreasAtuacao()");
+		return pessoaService.listarAreasAtuacao();
 	}
 
 }
