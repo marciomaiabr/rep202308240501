@@ -4,18 +4,21 @@ import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;
 
 public class CustomExceptionHandlerFactory extends ExceptionHandlerFactory {
-	private ExceptionHandlerFactory parent;
 
-	public CustomExceptionHandlerFactory(ExceptionHandlerFactory parent) {
+	private ExceptionHandlerFactory exceptionHandlerFactory;
+
+	public CustomExceptionHandlerFactory() {
 		System.out.println("CustomExceptionHandlerFactory.CustomExceptionHandlerFactory()");
-		this.parent = parent;
+	}
+
+	public CustomExceptionHandlerFactory(ExceptionHandlerFactory exceptionHandlerFactory) {
+		System.out.println("CustomExceptionHandlerFactory.CustomExceptionHandlerFactory()");
+		this.exceptionHandlerFactory = exceptionHandlerFactory;
 	}
 
 	@Override
 	public ExceptionHandler getExceptionHandler() {
 		System.out.println("CustomExceptionHandlerFactory.getExceptionHandler()");
-		ExceptionHandler handler = new CustomExceptionHandler(parent.getExceptionHandler());
-		return handler;
+		return new CustomExceptionHandler(exceptionHandlerFactory.getExceptionHandler());
 	}
-
 }

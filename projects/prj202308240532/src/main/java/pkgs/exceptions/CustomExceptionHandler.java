@@ -1,11 +1,9 @@
 package pkgs.exceptions;
 
-//import java.io.PrintWriter;
-//import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.Map;
+
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerWrapper;
@@ -13,91 +11,47 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
 
-//Inicialmente devemos implementar a classe CustomExceptionHandler que extende a classe ExceptionHandlerWrapper
 public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 
-	private ExceptionHandler wrapped;
+	private ExceptionHandler exceptionHandler;
 
-	// Obtém uma instância do FacesContext
-	final FacesContext facesContext = FacesContext.getCurrentInstance();
-
-	// Obtém um mapa do FacesContext
-	final Map requestMap = facesContext.getExternalContext().getRequestMap();
-
-	// Obtém o estado atual da navegação entre páginas do JSF
-	final NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
-
-	// Declara o construtor que recebe uma exceptio do tipo ExceptionHandler como
-	// parâmetro
-	CustomExceptionHandler(ExceptionHandler exception) {
+	public CustomExceptionHandler(ExceptionHandler exceptionHandler) {
 		System.out.println("CustomExceptionHandler.CustomExceptionHandler()");
-		this.wrapped = exception;
+		this.exceptionHandler = exceptionHandler;
 	}
 
-	// Sobrescreve o método ExceptionHandler que retorna a "pilha" de exceções
 	@Override
 	public ExceptionHandler getWrapped() {
 		System.out.println("CustomExceptionHandler.getWrapped()");
-		return wrapped;
+		return exceptionHandler;
 	}
 
-	// Sobrescreve o método handle que é responsável por manipular as exceções do
-	// JSF
 	@Override
 	public void handle() throws FacesException {
 		System.out.println("CustomExceptionHandler.handle()");
+		final Iterator<ExceptionQueuedEvent> queue = getUnhandledExceptionQueuedEvents().iterator();
 
-		final Iterator iterator = getUnhandledExceptionQueuedEvents().iterator();
-		while (iterator.hasNext()) {
-			ExceptionQueuedEvent event = (ExceptionQueuedEvent) iterator.next();
-			ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event.getSource();
+		while (queue.hasNext()) {
+			System.out.println("CustomExceptionHandler.handle()... queue.hasNext()");
+			ExceptionQueuedEvent item = queue.next();
+			ExceptionQueuedEventContext exceptionQueuedEventContext = (ExceptionQueuedEventContext) item.getSource();
 
-			// Recupera a exceção do contexto
-			Throwable exception = context.getException();
-
-			// Aqui tentamos tratar a exeção
 			try {
+				Throwable throwable = exceptionQueuedEventContext.getException();
+				System.err.println("Exception: " + throwable.getMessage());
 
-//              // Aqui você poderia por exemploinstanciar as classes StringWriter e PrintWriter
-//              StringWriter stringWriter = new StringWriter();
-//              // PrintWriter printWriter = new PrintWriter(stringWriter);
-//              // exception.printStackTrace(printWriter);
-//              // Por fim você pode converter a pilha de exceções em uma String
-//              String message = stringWriter.toString();
-//
-//              // Aqui você poderia enviar um email com a StackTrace
-//              // em anexo para a equipe de desenvolvimento
-//
-//              // e depois imprimir a stacktrace no log
-//              exception.printStackTrace();
+				FacesContext context = FacesContext.getCurrentInstance();
+				Map<String, Object> requestMap = context.getExternalContext().getRequestMap();
+				NavigationHandler nav = context.getApplication().getNavigationHandler();
 
-				// Coloca uma mensagem de exceção no mapa da request
-				requestMap.put("exceptionMessage", exception.getMessage());
+				requestMap.put("error-message", throwable.getMessage());
+				requestMap.put("error-stack", throwable.getStackTrace());
+				nav.handleNavigation(context, null, "/erro");
+				context.renderResponse();
 
-				// Avisa o usuário do erro
-				FacesContext
-						.getCurrentInstance()
-							.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-									"O sistema se recuperou de um erro inesperado.", ""));
-
-				// Tranquiliza o usuário para que ele continue usando o sistema
-				FacesContext
-						.getCurrentInstance()
-							.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-									"Você pode continuar usando o sistema normalmente!", ""));
-
-				// Seta a navegação para uma página padrão.
-				navigationHandler.handleNavigation(facesContext, null, "/erro");
-
-				// Renderiza a pagina de erro e exibe as mensagens
-				facesContext.renderResponse();
 			} finally {
-				// Remove a exeção da fila
-				iterator.remove();
+				queue.remove();
 			}
 		}
-
-		// Manipula o erro
-		getWrapped().handle();
 	}
 }
