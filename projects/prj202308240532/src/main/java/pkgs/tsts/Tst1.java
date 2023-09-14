@@ -60,7 +60,7 @@ public class Tst1 {
 		pessoa.setSobreNome("kjh");
 
 		Endereco endereco = new Endereco();
-		endereco.setDescEndereco("jhg");
+		//endereco.setDescEndereco("jhg");
 
 		pessoa.setEndereco(endereco);
 		endereco.setPessoa(pessoa);
