@@ -23,35 +23,17 @@
 			<h:outputLabel value="Sobrenome:">
 				<h:inputText value="#{pessoaMB.pessoa.sobreNome}" />
 			</h:outputLabel>
+			<h:outputLabel value="Endereço:">
+				<h:inputText value="#{pessoaMB.pessoa.endereco}"
+					converter="enderecoConverter" />
+			</h:outputLabel>
 		</h:panelGrid>
-		<hr width="25%" />
-		<fieldset>
-			<legend>Endereço:</legend>
-			<h:panelGrid>
-				<h:outputLabel value="Rua:">
-					<h:inputText value="#{pessoaMB.pessoa.endereco.rua}" />
-				</h:outputLabel>
-				<h:outputLabel value="Numero:">
-					<h:inputText value="#{pessoaMB.pessoa.endereco.numero}" />
-				</h:outputLabel>
-				<h:outputLabel value="Complemento:">
-					<h:inputText value="#{pessoaMB.pessoa.endereco.complemento}" />
-				</h:outputLabel>
-				<h:outputLabel value="Bairro:">
-					<h:inputText value="#{pessoaMB.pessoa.endereco.bairro}" />
-				</h:outputLabel>
-				<h:outputLabel value="Cidade:">
-					<h:inputText value="#{pessoaMB.pessoa.endereco.cidade}" />
-				</h:outputLabel>
-				<h:outputLabel value="UF:">
-					<h:inputText value="#{pessoaMB.pessoa.endereco.uf}" />
-				</h:outputLabel>
-			</h:panelGrid>
-		</fieldset>
 		<p>
 			<h:commandButton id="cmdBtnSalvar" value="Salvar..."
 				action="#{pessoaMB.salvar()}">
-				<f:param name="idPrincipal" value="#{pessoaMB.pessoa.id}" />
+				<c:if test="#{pessoaMB.pessoa.id!=null}">
+					<f:param name="idPrincipal" value="#{pessoaMB.pessoa.id}" />
+				</c:if>
 			</h:commandButton>
 		</p>
 	</h:form>
