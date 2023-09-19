@@ -109,4 +109,8 @@ public class Endereco {
 				+ "]";
 	}
 
+	public Endereco() {
+		super();
+		System.out.println("Endereco.Endereco()");
+	}
 }
