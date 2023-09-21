@@ -1,8 +1,10 @@
 package pkgs.converts;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 import pkgs.exceptions.EnderecoSimpleConverterException;
@@ -18,20 +20,23 @@ public class EnderecoConverter implements Converter {
 		System.out.println("EnderecoConverter.getAsObject()");
 		System.out.println("[value=" + value + "]");
 
-		String[] aSEndereco = value.split(";");
-
-		if (aSEndereco.length != 5)
-			throw new EnderecoSimpleConverterException("Campo endereço não possui 4 ;");
-		String[] aSCidadeUf = aSEndereco[4].split("-");
-		if (aSCidadeUf.length != 2)
-			throw new EnderecoSimpleConverterException("Campo endereço não possui 1 -");
-
 		Endereco endereco = null;
 		String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
-		if(idPrincipal!=null)
+		if (idPrincipal != null)
 			endereco = Repositorys.getRepository().buscaPorId(Integer.parseInt(idPrincipal)).getEndereco();
 		else
 			endereco = new Endereco();
+
+		String[] aSEndereco = value.split(";");
+
+		if (aSEndereco.length != 5)
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_FATAL, "Endereço inválido",
+					"Campo endereço não possui 4 ;"));
+
+		String[] aSCidadeUf = aSEndereco[4].split("-");
+		if (aSCidadeUf.length != 2)
+			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_FATAL, "Endereço inválido",
+					"Campo endereço não possui 1 -"));
 
 		endereco.setRua(aSEndereco[0]);
 		endereco.setNumero(aSEndereco[1]);
