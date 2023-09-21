@@ -30,13 +30,11 @@ public class EnderecoConverter implements Converter {
 		String[] aSEndereco = value.split(";");
 
 		if (aSEndereco.length != 5)
-			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_FATAL, "Endereço inválido",
-					"Campo endereço não possui 4 ;"));
+			throw new EnderecoSimpleConverterException("Campo endereço não possui 4 ;");
 
 		String[] aSCidadeUf = aSEndereco[4].split("-");
 		if (aSCidadeUf.length != 2)
-			throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_FATAL, "Endereço inválido",
-					"Campo endereço não possui 1 -"));
+			throw new EnderecoSimpleConverterException("Campo endereço não possui 1 -");
 
 		endereco.setRua(aSEndereco[0]);
 		endereco.setNumero(aSEndereco[1]);
