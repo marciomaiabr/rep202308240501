@@ -21,27 +21,26 @@ public class EnderecoConverter implements Converter {
 		System.out.println("[value=" + value + "]");
 
 		Endereco endereco = null;
-		String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
-		if (idPrincipal != null)
-			endereco = Repositorys.getRepository().buscaPorId(Integer.parseInt(idPrincipal)).getEndereco();
-		else
-			endereco = new Endereco();
 
 		String[] aSEndereco = value.split(";");
 
-		if (aSEndereco.length != 5)
-			throw new EnderecoSimpleConverterException("Campo endereço não possui 4 ;");
+		if (aSEndereco.length == 5) {
+			String[] aSCidadeUf = aSEndereco[4].split("-");
+			if (aSCidadeUf.length == 2) {
+				String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
+				if (idPrincipal != null)
+					endereco = Repositorys.getRepository().buscaPorId(Integer.parseInt(idPrincipal)).getEndereco();
+				else
+					endereco = new Endereco();
 
-		String[] aSCidadeUf = aSEndereco[4].split("-");
-		if (aSCidadeUf.length != 2)
-			throw new EnderecoSimpleConverterException("Campo endereço não possui 1 -");
-
-		endereco.setRua(aSEndereco[0]);
-		endereco.setNumero(aSEndereco[1]);
-		endereco.setComplemento(aSEndereco[2]);
-		endereco.setBairro(aSEndereco[3]);
-		endereco.setCidade(aSCidadeUf[0]);
-		endereco.setUf(aSCidadeUf[1]);
+				endereco.setRua(aSEndereco[0]);
+				endereco.setNumero(aSEndereco[1]);
+				endereco.setComplemento(aSEndereco[2]);
+				endereco.setBairro(aSEndereco[3]);
+				endereco.setCidade(aSCidadeUf[0]);
+				endereco.setUf(aSCidadeUf[1]);
+			}
+		}
 
 		System.out.println("[endereco=" + endereco + "]");
 
