@@ -24,15 +24,16 @@ public class EnderecoConverter implements Converter {
 
 		String[] aSEndereco = value.split(";");
 
+		String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
+
+		if (idPrincipal != null)
+			endereco = Repositorys.getRepository().buscaPorId(Integer.parseInt(idPrincipal)).getEndereco();
+		else
+			endereco = new Endereco();
+
 		if (aSEndereco.length == 5) {
 			String[] aSCidadeUf = aSEndereco[4].split("-");
 			if (aSCidadeUf.length == 2) {
-				String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
-				if (idPrincipal != null)
-					endereco = Repositorys.getRepository().buscaPorId(Integer.parseInt(idPrincipal)).getEndereco();
-				else
-					endereco = new Endereco();
-
 				endereco.setRua(aSEndereco[0]);
 				endereco.setNumero(aSEndereco[1]);
 				endereco.setComplemento(aSEndereco[2]);
