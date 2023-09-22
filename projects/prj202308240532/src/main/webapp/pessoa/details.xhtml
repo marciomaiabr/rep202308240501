@@ -25,7 +25,7 @@
 			</h:outputLabel>
 			<h:outputLabel value="Endereço:">
 				<h:inputText id="iptEndereco" value="#{pessoaMB.pessoa.endereco}"
-					converter="enderecoConverter" />
+					converter="enderecoConverter" validator="enderecoValidator" />
 				<h:message for="iptEndereco" showDetail="true" showSummary="true" />
 			</h:outputLabel>
 		</h:panelGrid>
