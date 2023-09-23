@@ -3,15 +3,15 @@ package pkgs.exceptions;
 import javax.faces.application.FacesMessage;
 import javax.faces.validator.ValidatorException;
 
-public class EnderecoSimpleValidatorException extends ValidatorException {
+public class EnderecoValidatorException extends ValidatorException {
 
 	private static final long serialVersionUID = 7537808452390245987L;
 
-	public EnderecoSimpleValidatorException() {
+	public EnderecoValidatorException() {
 		super(new FacesMessage(FacesMessage.SEVERITY_FATAL, "Endereço inválido", null));
 	}
 
-	public EnderecoSimpleValidatorException(String message) {
+	public EnderecoValidatorException(String message) {
 		super(new FacesMessage(FacesMessage.SEVERITY_FATAL, "Endereço inválido", message));
 	}
 
