@@ -7,7 +7,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import pkgs.exceptions.EnderecoSimpleConverterException;
+import pkgs.exceptions.EnderecoConverterException;
 import pkgs.models.Endereco;
 import pkgs.repositorys.Repositorys;
 import pkgs.util.JSFUtil;
