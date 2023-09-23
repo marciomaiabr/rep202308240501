@@ -11,7 +11,7 @@
 		<h:outputText
 			value="#{pessoaMB.pessoa.id==null ? 'Novo...' : 'Editar...' }" />
 	</h1>
-	<h3>20230920 0451...</h3>
+	<h3>20230923 0458...</h3>
 	<h:form id="formPrincipal">
 		<h:panelGrid>
 			<h:outputLabel value="Id:">
@@ -25,9 +25,7 @@
 			</h:outputLabel>
 			<h:outputLabel value="Endereço:">
 				<h:inputText id="iptEndereco" value="#{pessoaMB.pessoa.endereco}"
-					converter="enderecoConverter">
-					<f:validator validatorId="enderecoValidator" />
-				</h:inputText>
+					converter="enderecoConverter" validator="enderecoValidator" />
 				<h:message for="iptEndereco" showDetail="true" showSummary="true" />
 			</h:outputLabel>
 		</h:panelGrid>
