@@ -8,6 +8,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import pkgs.exceptions.EnderecoSimpleConverterException;
+import pkgs.exceptions.EnderecoSimpleValidatorException;
 
 @FacesValidator("enderecoValidator")
 public class EnderecoValidator implements Validator {
@@ -24,11 +25,11 @@ public class EnderecoValidator implements Validator {
 		String[] aSEndereco = sSubmittedValue.split(";");
 
 		if (aSEndereco.length != 5)
-			throw new EnderecoSimpleConverterException("Campo endereço não possui 4 ;");
+			throw new EnderecoSimpleValidatorException("Campo endereço não possui 4 ;");
 
 		String[] aSCidadeUf = aSEndereco[4].split("-");
 		if (aSCidadeUf.length != 2)
-			throw new EnderecoSimpleConverterException("Campo endereço não possui 1 -");
+			throw new EnderecoSimpleValidatorException("Campo endereço não possui 1 -");
 
 	}
 
