@@ -2,6 +2,7 @@ package pkgs.converts;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
@@ -18,32 +19,40 @@ public class EnderecoConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		System.out.println("EnderecoConverter.getAsObject()");
-		System.out.println("[value=" + value + "]");
+		System.out
+				.println("[component=" + component + "][component.getId()=" + component.getId() + "][value=" + value
+						+ "]");
 
 		Endereco endereco = null;
 
-		String[] aSEndereco = value.split(";");
+		endereco = (Endereco) JSFUtil.buscaRequestAttribute("endereco");
 
-		String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
+		if(endereco == null) {
+			String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
 
-		if (idPrincipal != null)
-			endereco = Repositorys.getRepository().buscaPorId(Integer.parseInt(idPrincipal)).getEndereco();
-		else
-			endereco = new Endereco();
-
-		if (aSEndereco.length == 5) {
-			String[] aSCidadeUf = aSEndereco[4].split("-");
-			if (aSCidadeUf.length == 2) {
-				endereco.setRua(aSEndereco[0]);
-				endereco.setNumero(aSEndereco[1]);
-				endereco.setComplemento(aSEndereco[2]);
-				endereco.setBairro(aSEndereco[3]);
-				endereco.setCidade(aSCidadeUf[0]);
-				endereco.setUf(aSCidadeUf[1]);
+			if (idPrincipal != null) {
+				endereco = Repositorys.getRepository().buscaPorId(Integer.parseInt(idPrincipal)).getEndereco();
+			} else {
+				endereco = new Endereco();
 			}
 		}
 
+		if (component.getId().equals("iptRua"))
+			endereco.setRua(value);
+		else if (component.getId().equals("iptNumero"))
+			endereco.setNumero(value);
+		else if (component.getId().equals("iptComplemento"))
+			endereco.setComplemento(value);
+		else if (component.getId().equals("iptBairro"))
+			endereco.setBairro(value);
+		else if (component.getId().equals("iptCidade"))
+			endereco.setCidade(value);
+		else if (component.getId().equals("iptUf"))
+			endereco.setUf(value);
+
 		System.out.println("[endereco=" + endereco + "]");
+
+		JSFUtil.setRequestAttribute("endereco", endereco);
 
 		return endereco;
 	}
@@ -55,14 +64,24 @@ public class EnderecoConverter implements Converter {
 
 		Endereco endereco = (Endereco) value;
 
-		String sEndereco = "";
-		sEndereco += endereco.getRua() + ";" + endereco.getNumero() + ";" + endereco.getComplemento() + ";"
-				+ endereco.getBairro() + ";";
-		sEndereco += endereco.getCidade() + "-" + endereco.getUf();
+		String retorno = null;
 
-		System.out.println("[sEndereco=" + sEndereco + "]");
+		if (component.getId().equals("iptRua"))
+			retorno = endereco.getRua();
+		else if (component.getId().equals("iptNumero"))
+			retorno = endereco.getNumero();
+		else if (component.getId().equals("iptComplemento"))
+			retorno = endereco.getComplemento();
+		else if (component.getId().equals("iptBairro"))
+			retorno = endereco.getBairro();
+		else if (component.getId().equals("iptCidade"))
+			retorno = endereco.getCidade();
+		else if (component.getId().equals("iptUf"))
+			retorno = endereco.getUf();
 
-		return sEndereco;
+		System.out.println("[retorno=" + retorno + "]");
+
+		return retorno;
 	}
 
 }
