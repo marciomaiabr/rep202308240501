@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
+import pkgs.models.Endereco;
 
 public class JSFUtil {
 
@@ -32,6 +35,12 @@ public class JSFUtil {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ServletRequest request = (ServletRequest) context.getExternalContext().getRequest();
 		return request.getAttribute(attributeName);
+	}
+
+	public static void setRequestAttribute(String attributeName, Object object) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		request.setAttribute(attributeName, object);
 	}
 
 }
