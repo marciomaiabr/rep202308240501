@@ -88,8 +88,8 @@ public class PessoaMB {
 			if (cmdBtnSalvar != null) {
 				System.out.println("if 1...");
 				this.pessoa = new Pessoa();
-				// this.pessoa.setEndereco(new Endereco());
-				// this.pessoa.getEndereco().setPessoa(this.pessoa);
+				this.pessoa.setEndereco(new Endereco());
+				this.pessoa.getEndereco().setPessoa(this.pessoa);
 			}
 		}
 

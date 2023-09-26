@@ -28,7 +28,7 @@
 			<legend>Endereço:</legend>
 			<h:panelGrid>
 				<h:outputLabel value="Rua:">
-					<h:inputText id="iptRua" value="#{pessoaMB.pessoa.endereco}" converter="enderecoConverter" />
+					<h:inputText id="iptRua" value="#{pessoaMB.pessoa.endereco.rua}" />
 				</h:outputLabel>
 				<h:outputLabel value="Número:">
 					<h:inputText id="iptNumero" value="#{pessoaMB.pessoa.endereco.numero}" />
