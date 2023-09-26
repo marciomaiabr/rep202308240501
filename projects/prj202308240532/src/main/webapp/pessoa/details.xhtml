@@ -31,19 +31,19 @@
 					<h:inputText id="iptRua" value="#{pessoaMB.pessoa.endereco}" converter="enderecoConverter" />
 				</h:outputLabel>
 				<h:outputLabel value="Número:">
-					<h:inputText id="iptNumero" value="#{pessoaMB.pessoa.endereco}" converter="enderecoConverter" />
+					<h:inputText id="iptNumero" value="#{pessoaMB.pessoa.endereco.numero}" />
 				</h:outputLabel>
 				<h:outputLabel value="Complemento:">
-					<h:inputText id="iptComplemento" value="#{pessoaMB.pessoa.endereco}" converter="enderecoConverter" />
+					<h:inputText id="iptComplemento" value="#{pessoaMB.pessoa.endereco.complemento}" />
 				</h:outputLabel>
 				<h:outputLabel value="Bairro:">
-					<h:inputText id="iptBairro" value="#{pessoaMB.pessoa.endereco}" converter="enderecoConverter" />
+					<h:inputText id="iptBairro" value="#{pessoaMB.pessoa.endereco.bairro}" />
 				</h:outputLabel>
 				<h:outputLabel value="Cidade:">
-					<h:inputText id="iptCidade" value="#{pessoaMB.pessoa.endereco}" converter="enderecoConverter" />
+					<h:inputText id="iptCidade" value="#{pessoaMB.pessoa.endereco.cidade}" />
 				</h:outputLabel>
 				<h:outputLabel value="UF:">
-					<h:inputText id="iptUf" value="#{pessoaMB.pessoa.endereco}" converter="enderecoConverter" />
+					<h:inputText id="iptUf" value="#{pessoaMB.pessoa.endereco.uf}" />
 				</h:outputLabel>
 			</h:panelGrid>
 		</fieldset>

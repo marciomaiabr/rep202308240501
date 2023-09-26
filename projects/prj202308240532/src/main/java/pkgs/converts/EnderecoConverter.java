@@ -27,7 +27,7 @@ public class EnderecoConverter implements Converter {
 
 		endereco = (Endereco) JSFUtil.buscaRequestAttribute("endereco");
 
-		if(endereco == null) {
+		if (endereco == null) {
 			String idPrincipal = JSFUtil.buscaRequestParameter("idPrincipal");
 
 			if (idPrincipal != null) {
@@ -37,18 +37,7 @@ public class EnderecoConverter implements Converter {
 			}
 		}
 
-		if (component.getId().equals("iptRua"))
-			endereco.setRua(value);
-		else if (component.getId().equals("iptNumero"))
-			endereco.setNumero(value);
-		else if (component.getId().equals("iptComplemento"))
-			endereco.setComplemento(value);
-		else if (component.getId().equals("iptBairro"))
-			endereco.setBairro(value);
-		else if (component.getId().equals("iptCidade"))
-			endereco.setCidade(value);
-		else if (component.getId().equals("iptUf"))
-			endereco.setUf(value);
+		endereco.setRua(value);
 
 		System.out.println("[endereco=" + endereco + "]");
 
@@ -66,18 +55,7 @@ public class EnderecoConverter implements Converter {
 
 		String retorno = null;
 
-		if (component.getId().equals("iptRua"))
-			retorno = endereco.getRua();
-		else if (component.getId().equals("iptNumero"))
-			retorno = endereco.getNumero();
-		else if (component.getId().equals("iptComplemento"))
-			retorno = endereco.getComplemento();
-		else if (component.getId().equals("iptBairro"))
-			retorno = endereco.getBairro();
-		else if (component.getId().equals("iptCidade"))
-			retorno = endereco.getCidade();
-		else if (component.getId().equals("iptUf"))
-			retorno = endereco.getUf();
+		retorno = endereco.getRua();
 
 		System.out.println("[retorno=" + retorno + "]");
 
