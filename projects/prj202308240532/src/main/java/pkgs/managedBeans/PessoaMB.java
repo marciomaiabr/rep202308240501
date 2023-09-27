@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import pkgs.converts.EnderecoConverter;
 import pkgs.models.AreaAtuacao;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
@@ -71,6 +72,14 @@ public class PessoaMB {
 		this.pessoas = pessoas;
 	}
 
+	private EnderecoConverter enderecoConverter = new EnderecoConverter();
+	public void setEnderecoConverter(EnderecoConverter enderecoConverter) {
+		this.enderecoConverter = enderecoConverter;
+	}
+	public EnderecoConverter getEnderecoConverter() {
+		return enderecoConverter;
+	}
+
 	@PostConstruct
 	public void init() {
 		System.out.println("PessoaMB.init()");
@@ -88,8 +97,8 @@ public class PessoaMB {
 			if (cmdBtnSalvar != null) {
 				System.out.println("if 1...");
 				this.pessoa = new Pessoa();
-				this.pessoa.setEndereco(new Endereco());
-				this.pessoa.getEndereco().setPessoa(this.pessoa);
+				// this.pessoa.setEndereco(new Endereco());
+				// this.pessoa.getEndereco().setPessoa(this.pessoa);
 			}
 		}
 

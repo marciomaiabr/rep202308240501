@@ -23,30 +23,14 @@
 			<h:outputLabel value="Sobrenome:">
 				<h:inputText value="#{pessoaMB.pessoa.sobreNome}" />
 			</h:outputLabel>
+			<h:outputLabel value="Endereço:">
+				<h:inputText id="iptEndereco" value="#{pessoaMB.pessoa.endereco}"
+					converter="#{pessoaMB.enderecoConverter}">
+					<f:validator validatorId="enderecoValidator" />
+				</h:inputText>
+				<h:message for="iptEndereco" showDetail="true" showSummary="true" />
+			</h:outputLabel>
 		</h:panelGrid>
-		<fieldset style="width: 50%;">
-			<legend>Endereço:</legend>
-			<h:panelGrid>
-				<h:outputLabel value="Rua:">
-					<h:inputText id="iptRua" value="#{pessoaMB.pessoa.endereco.rua}" />
-				</h:outputLabel>
-				<h:outputLabel value="Número:">
-					<h:inputText id="iptNumero" value="#{pessoaMB.pessoa.endereco.numero}" />
-				</h:outputLabel>
-				<h:outputLabel value="Complemento:">
-					<h:inputText id="iptComplemento" value="#{pessoaMB.pessoa.endereco.complemento}" />
-				</h:outputLabel>
-				<h:outputLabel value="Bairro:">
-					<h:inputText id="iptBairro" value="#{pessoaMB.pessoa.endereco.bairro}" />
-				</h:outputLabel>
-				<h:outputLabel value="Cidade:">
-					<h:inputText id="iptCidade" value="#{pessoaMB.pessoa.endereco.cidade}" />
-				</h:outputLabel>
-				<h:outputLabel value="UF:">
-					<h:inputText id="iptUf" value="#{pessoaMB.pessoa.endereco.uf}" />
-				</h:outputLabel>
-			</h:panelGrid>
-		</fieldset>
 		<p>
 			<h:commandButton id="cmdBtnSalvar" value="Salvar..."
 				action="#{pessoaMB.salvar()}">
