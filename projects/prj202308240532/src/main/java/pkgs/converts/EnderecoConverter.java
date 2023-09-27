@@ -12,7 +12,7 @@ import pkgs.models.Endereco;
 import pkgs.repositorys.Repositorys;
 import pkgs.util.JSFUtil;
 
-//@FacesConverter("enderecoConverter")
+@FacesConverter(forClass = pkgs.models.Endereco.class)
 public class EnderecoConverter implements Converter {
 
 	@Override
