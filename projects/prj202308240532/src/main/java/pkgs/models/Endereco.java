@@ -27,8 +27,6 @@ public class Endereco {
 	private String cidade;
 	@Column(length = 9)
 	private String uf;
-	@Column(length = 110)
-	private String enderecoCompleto;
 
 	public Integer getId() {
 		return id;
@@ -94,19 +92,10 @@ public class Endereco {
 		this.uf = uf;
 	}
 
-	public String getEnderecoCompleto() {
-		return enderecoCompleto;
-	}
-
-	public void setEnderecoCompleto(String enderecoCompleto) {
-		this.enderecoCompleto = enderecoCompleto;
-	}
-
 	@Override
 	public String toString() {
 		return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
-				+ ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf + ", enderecoCompleto=" + enderecoCompleto
-				+ "]";
+				+ ", bairro=" + bairro + ", cidade=" + cidade + ", uf=" + uf + "]";
 	}
 
 	public Endereco() {
