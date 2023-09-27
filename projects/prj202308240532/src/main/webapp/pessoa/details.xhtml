@@ -24,8 +24,7 @@
 				<h:inputText value="#{pessoaMB.pessoa.sobreNome}" />
 			</h:outputLabel>
 			<h:outputLabel value="Endereço:">
-				<h:inputText id="iptEndereco" value="#{pessoaMB.pessoa.endereco}"
-					converter="#{pessoaMB.enderecoConverter}">
+				<h:inputText id="iptEndereco" value="#{pessoaMB.pessoa.endereco}">
 					<f:validator validatorId="enderecoValidator" />
 				</h:inputText>
 				<h:message for="iptEndereco" showDetail="true" showSummary="true" />
