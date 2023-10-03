@@ -31,8 +31,8 @@
 			</h:outputLabel>
 
 			<h:outputLabel value="Área de atuação:" >
-				<h:selectOneMenu id="iptAreaAtuacao" value="#{pessoaMB.areaAtuacao}" converter="entityConverter">
-					<f:selectItems value="#{pessoaMB.areasAtuacao}" var="areasAtuacao" itemValue="#{areasAtuacao}" itemLabel="#{areasAtuacao.descricao}" />
+				<h:selectOneMenu id="iptAreaAtuacao" value="#{pessoaMB.areaAtuacao.id}" >
+					<f:selectItems value="#{pessoaMB.areasAtuacao}" var="aa" itemValue="#{aa.id}" itemLabel="#{aa.descricao}" />
 				</h:selectOneMenu>
 			</h:outputLabel>
 

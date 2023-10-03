@@ -67,7 +67,7 @@ public class PessoaMB {
 		return listAreasAtuacao;
 	}
 
-	private AreaAtuacao areaAtuacao;
+	private AreaAtuacao areaAtuacao = new AreaAtuacao();
 	public void setAreaAtuacao(AreaAtuacao areaAtuacao) {
 		this.areaAtuacao = areaAtuacao;
 	}
