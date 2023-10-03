@@ -61,7 +61,7 @@ public class PessoaMB {
 		this.pessoa = pessoa;
 	}
 
-	private List<AreaAtuacao> listAreasAtuacao = pessoaService.listarAreasAtuacao();
+	private List<AreaAtuacao> listAreasAtuacao;
 	public List<AreaAtuacao> getAreasAtuacao() {
 		System.out.println("PessoaMB.getAreasAtuacao()");
 		return listAreasAtuacao;
@@ -94,6 +94,8 @@ public class PessoaMB {
 		System.out.println("[this.areaAtuacao=" + this.areaAtuacao + "]");
 
 		String cmdBtnSalvar = JSFUtil.buscaRequestParameterFormPrincipal("cmdBtnSalvar");
+
+		listAreasAtuacao = pessoaService.listarAreasAtuacao();
 
 		if ((this.idPrincipal != null) && (!this.idPrincipal.equals(0))) {
 			System.out.println("if 1...");
