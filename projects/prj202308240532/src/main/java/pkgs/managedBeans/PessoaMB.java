@@ -61,6 +61,20 @@ public class PessoaMB {
 		this.pessoa = pessoa;
 	}
 
+	private List<AreaAtuacao> listAreasAtuacao = pessoaService.listarAreasAtuacao();
+	public List<AreaAtuacao> getAreasAtuacao() {
+		System.out.println("PessoaMB.getAreasAtuacao()");
+		return listAreasAtuacao;
+	}
+
+	private AreaAtuacao areaAtuacao;
+	public void setAreaAtuacao(AreaAtuacao areaAtuacao) {
+		this.areaAtuacao = areaAtuacao;
+	}
+	public AreaAtuacao getAreaAtuacao() {
+		return areaAtuacao;
+	}
+
 	private List<Pessoa> pessoas;
 
 	public List<Pessoa> getPessoas() {
@@ -77,6 +91,7 @@ public class PessoaMB {
 		System.out.println("[this.pessoa=" + this.pessoa + "]");
 		System.out.println("[this.pessoaService=" + this.pessoaService + "]");
 		System.out.println("[this.idPrincipal=" + this.idPrincipal + "]");
+		System.out.println("[this.areaAtuacao=" + this.areaAtuacao + "]");
 
 		String cmdBtnSalvar = JSFUtil.buscaRequestParameterFormPrincipal("cmdBtnSalvar");
 
@@ -103,6 +118,7 @@ public class PessoaMB {
 		this.pessoa.getEndereco().setPessoa(this.pessoa);
 		System.out.println("[this.pessoaService=" + this.pessoaService + "]");
 		System.out.println("[this.idPrincipal=" + this.idPrincipal + "]");
+		System.out.println("[this.areaAtuacao=" + this.areaAtuacao + "]");
 
 		pessoaService.salvar(pessoa);
 		return "listar";
@@ -115,11 +131,6 @@ public class PessoaMB {
 	public List<Pessoa> listar() {
 		System.out.println("PessoaMB.listar()");
 		return pessoas;
-	}
-
-	public List<AreaAtuacao> getAreasAtuacao() {
-		System.out.println("PessoaMB.getAreasAtuacao()");
-		return pessoaService.listarAreasAtuacao();
 	}
 
 }
