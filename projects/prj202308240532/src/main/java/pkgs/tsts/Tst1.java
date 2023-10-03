@@ -2,6 +2,7 @@ package pkgs.tsts;
 
 import java.lang.reflect.Method;
 
+import pkgs.models.AreaAtuacao;
 import pkgs.models.Endereco;
 import pkgs.models.Pessoa;
 import pkgs.repositorys.PessoaRepositoryJPA;
@@ -86,6 +87,19 @@ public class Tst1 {
 		System.out.println("Tst1.m6()");
 		JPAUtil.createDatabase();
 		JPAUtil.initialInsert();
+	}
+
+	public static void m7() {
+		System.out.println("Tst1.m7()");
+
+		JPAUtil.execute(entityManager -> {
+			System.out.println("Tst1.m7()... JPAUtil.execute()... 1...");
+			AreaAtuacao areaAtuacao = null;
+			//areaAtuacao = entityManager.find(AreaAtuacao.class, 1);
+			areaAtuacao = entityManager.createQuery(" select aa from AreaAtuacao aa ", AreaAtuacao.class).getResultList().get(0);
+			//areaAtuacao = entityManager.createQuery(" select aa from AreaAtuacao aa join fetch aa.subAreaAtuacao ", AreaAtuacao.class).getResultList().get(0);
+			System.out.println("[areaAtuacao="+areaAtuacao+"]");
+		});
 	}
 
 }
