@@ -11,7 +11,7 @@
 		<h:outputText
 			value="#{pessoaMB.pessoa.id==null ? 'Novo...' : 'Editar...' }" />
 	</h1>
-	<h3>20230923 0458...</h3>
+	<h3>20231003 0412...</h3>
 	<h:form id="formPrincipal">
 		<h:panelGrid>
 			<h:outputLabel value="Id:">
@@ -29,6 +29,13 @@
 				</h:inputText>
 				<h:message for="iptEndereco" showDetail="true" showSummary="true" />
 			</h:outputLabel>
+
+			<h:outputLabel value="Área de atuação:" >
+				<h:selectOneMenu id="iptAreaAtuacao" value="#{pessoaMB.areaAtuacao}" converter="entityConverter">
+					<f:selectItems value="#{pessoaMB.areasAtuacao}" var="areasAtuacao" itemValue="#{areasAtuacao}" itemLabel="#{areasAtuacao.descricao}" />
+				</h:selectOneMenu>
+			</h:outputLabel>
+
 		</h:panelGrid>
 		<p>
 			<h:commandButton id="cmdBtnSalvar" value="Salvar..."
