@@ -50,6 +50,12 @@ public class PessoaRepositoryJPA implements PessoaRepository {
 	@Override
 	public List<AreaAtuacao> listarAreasAtuacao() {
 		return entityManager.createQuery(" from AreaAtuacao ", AreaAtuacao.class).getResultList();
+		//return entityManager.createQuery(" select aa from AreaAtuacao aa join fetch aa.subAreaAtuacao ", AreaAtuacao.class).getResultList();
+	}
+
+	@Override
+	public AreaAtuacao getAreaAtuacaoById(Integer id) {
+		return entityManager.find(AreaAtuacao.class, id);
 	}
 
 }

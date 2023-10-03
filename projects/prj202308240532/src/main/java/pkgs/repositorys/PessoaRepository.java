@@ -7,5 +7,6 @@ import pkgs.models.AreaAtuacao;
 public interface PessoaRepository extends Repository {
 
 	public List<AreaAtuacao> listarAreasAtuacao();
+	public AreaAtuacao getAreaAtuacaoById(Integer id);
 
 }
