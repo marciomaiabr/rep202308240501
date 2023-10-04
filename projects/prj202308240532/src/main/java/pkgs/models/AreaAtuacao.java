@@ -19,7 +19,7 @@ public class AreaAtuacao {
 	private Integer id;
 	@Column(length = 50)
 	private String descricao;
-	@OneToMany(mappedBy = "areaAtuacao", cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "areaAtuacao", cascade = CascadeType.ALL)
 	private List<SubAreaAtuacao> subAreaAtuacao;
 
 	public Integer getId() {
