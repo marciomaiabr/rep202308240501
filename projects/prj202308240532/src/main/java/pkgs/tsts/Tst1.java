@@ -102,7 +102,7 @@ public class Tst1 {
 			List<AreaAtuacao> areasAtuacao = entityManager.createQuery(" select distinct(aa) from AreaAtuacao aa left join fetch aa.subAreaAtuacao ", AreaAtuacao.class).getResultList();
 			areasAtuacao.forEach((aa) ->{
 				System.out.println("[aa="+aa+"]");
-				aa.getSubAreaAtuacao().forEach(System.out::println);
+				aa.getSubAreasAtuacao().forEach(System.out::println);
 			});
 			//System.out.println("[areaAtuacao="+areaAtuacao+"]");
 			//areaAtuacao.getSubAreaAtuacao().forEach(System.out::println);
