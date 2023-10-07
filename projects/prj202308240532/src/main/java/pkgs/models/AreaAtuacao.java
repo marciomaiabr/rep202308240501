@@ -19,8 +19,8 @@ public class AreaAtuacao {
 	private Integer id;
 	@Column(length = 50)
 	private String descricao;
-	@OneToMany(mappedBy = "areaAtuacao", cascade = CascadeType.ALL)
-	private List<SubAreaAtuacao> subAreaAtuacao;
+	@OneToMany(mappedBy = "areaAtuacao", cascade = CascadeType.ALL/*, fetch = FetchType.EAGER*/)
+	private List<SubAreaAtuacao> subAreasAtuacao;
 
 	public Integer getId() {
 		return id;
@@ -38,12 +38,12 @@ public class AreaAtuacao {
 		this.descricao = descricao;
 	}
 
-	public List<SubAreaAtuacao> getSubAreaAtuacao() {
-		return subAreaAtuacao;
+	public List<SubAreaAtuacao> getSubAreasAtuacao() {
+		return subAreasAtuacao;
 	}
 
-	public void setSubAreaAtuacao(List<SubAreaAtuacao> subAreaAtuacao) {
-		this.subAreaAtuacao = subAreaAtuacao;
+	public void setSubAreasAtuacao(List<SubAreaAtuacao> subAreasAtuacao) {
+		this.subAreasAtuacao = subAreasAtuacao;
 	}
 
 	public AreaAtuacao() {
